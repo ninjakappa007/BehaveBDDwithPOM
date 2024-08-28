@@ -26,19 +26,18 @@ def step_impl(context):
     assert context.driver.find_element(By.LINK_TEXT, 'HP LP3065').is_displayed()
     context.driver.quit()
 
+
 @when(u'I enter invalid product into the search box field')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter invalid product into the search box field')
+    context.driver.find_element(By.NAME, 'search').send_keys('uhsrfusv')
 
 
-@then(u'Proper message should be displayed in search results')
+@then(u'Proper error message should be displayed in search results')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: Then Proper message should be displayed in search results')
+    expected_error_message = 'There is no product that matches the search criteria.'
+    assert context.driver.find_element(By.XPATH, '//input[@id = "button-search"]/following-sibling::p').text.__eq__(expected_error_message)
 
 
 @when(u'I dont enter anything into the search box field')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I dont enter anything into the search box field')
+    context.driver.find_element(By.NAME, 'search').send_keys("")

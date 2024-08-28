@@ -11,10 +11,10 @@ Feature: Search functionality
     Given  I navigated to home page
     When I enter invalid product into the search box field
     And I click on search button
-    Then Proper message should be displayed in search results
+    Then Proper error message should be displayed in search results
 
   Scenario: Search without entering product
     Given  I navigated to home page
     When I dont enter anything into the search box field
     And I click on search button
-    Then Proper message should be displayed in search results
+    Then Proper error message should be displayed in search results
