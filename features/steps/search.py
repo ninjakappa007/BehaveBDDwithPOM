@@ -1,29 +1,30 @@
+import time
+
 from behave import *
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 @given(u'I navigated to home page')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: Given I navigated to home page')
+    context.driver = webdriver.Chrome()
+    context.driver.get("https://tutorialsninja.com/demo/")
 
 
 @when(u'I enter valid product into the search box field')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter valid product into the search box field')
+    context.driver.find_element(By.NAME, 'search').send_keys('HP')
 
 
 @when(u'I click on search button')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I click on search button')
+    context.driver.find_element(By.XPATH, '//*[@id="search"]/span/button').click()
 
 
 @then(u'Valid product should get displayed in search results')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: Then Valid product should get displayed in search results')
-
+    assert context.driver.find_element(By.LINK_TEXT, 'HP LP3065').is_displayed()
+    context.driver.quit()
 
 @when(u'I enter invalid product into the search box field')
 def step_impl(context):

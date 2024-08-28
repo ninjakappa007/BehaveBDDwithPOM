@@ -1,4 +1,6 @@
 Feature: Search functionality
+
+  @implemented
   Scenario: Search for a valid product
     Given  I navigated to home page
     When I enter valid product into the search box field
