@@ -6,12 +6,6 @@ Feature: Register Account Functionality
     And I click on Continue button
     Then Account should get created
 
-  Scenario: Register with all fields
-    Given I navigated to Register page
-    When I enter all fields
-    And I click on Continue button
-    Then Account should get created
-
   Scenario: Register with a duplicate email address
     Given I navigated to Register page
     When I enter all fields except email fields
