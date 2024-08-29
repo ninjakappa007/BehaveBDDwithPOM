@@ -1,5 +1,6 @@
 # Behave BDD Notes
 
+### This repo is for keeping track of my daily progress, nothing fancy
 execution command - behave .\features\search.feature
 
 (if  behave .\features - it will execute all the features under feature file)
