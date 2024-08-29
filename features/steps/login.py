@@ -39,7 +39,7 @@ def step_impl(context):
 
 @then(u'I should get proper error message')
 def step_impl(context):
-    # Here i am adding two expected text because if we are running this test for multiple iterations we might get second text
+    # Here i am adding two expected text because if we are running this test for multiple iterations we might get 2nd text
     expected_text_if_login_failed = "Warning: No match for E-Mail Address and/or Password."
     expected_text_if_login_failed_2 = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."
     assert (context.driver.find_element(By.XPATH, '//*[@id="account-login"]/div[1]').text == expected_text_if_login_failed or
