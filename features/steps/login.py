@@ -1,55 +1,65 @@
+import time
+
 from behave import *
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 @given(u'I navigated to Login page')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: Given I navigated to Login page')
+    context.driver = webdriver.Chrome()
+    context.driver.get('https://tutorialsninja.com/demo/')
+    context.driver.find_element(By.XPATH, "//*[@title='My Account']").click()
+    context.driver.find_element(By.LINK_TEXT, "Login").click()
 
 
 @when(u'I enter valid email and valid password into the fields')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter valid email and valid password into the fields')
+    context.driver.find_element(By.ID, "input-email").send_keys("sukamadrick@gmail.com")
+    context.driver.find_element(By.ID, "input-password").send_keys("11112222")
 
 
 @when(u'I click login button')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I click login button')
+    context.driver.find_element(By.XPATH, "//*[@value='Login']").click()
 
 
 @then(u'I should get logged in')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: Then I should get logged in')
+    expected_text_after_login = "Logout"
+    assert context.driver.find_element(By.LINK_TEXT, "Logout").text == expected_text_after_login
+    context.driver.quit()
 
 
 @when(u'I enter invalid email and valid password into the fields')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter invalid email and valid password into the fields')
+    context.driver.find_element(By.ID, "input-email").send_keys("sukamadrick69@gmail.com")
+    context.driver.find_element(By.ID, "input-password").send_keys("11112222")
 
 
 @then(u'I should get proper error message')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: Then I should get proper error message')
+    # Here i am adding two expected text because if we are running this test for multiple iterations we might get second text
+    expected_text_if_login_failed = "Warning: No match for E-Mail Address and/or Password."
+    expected_text_if_login_failed_2 = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."
+    assert (context.driver.find_element(By.XPATH, '//*[@id="account-login"]/div[1]').text == expected_text_if_login_failed or
+            context.driver.find_element(By.XPATH, '//*[@id="account-login"]/div[1]').text == expected_text_if_login_failed_2)
+    context.driver.quit()
 
 
 @when(u'I enter valid email and invalid password into the fields')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter valid email and invalid password into the fields')
+    context.driver.find_element(By.ID, "input-email").send_keys("sukamadrick@gmail.com")
+    context.driver.find_element(By.ID, "input-password").send_keys("111122223333")
 
 
 @when(u'I enter invalid email and invalid password into the fields')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter invalid email and invalid password into the fields')
+    context.driver.find_element(By.ID, "input-email").send_keys("sukamadrick69@gmail.com")
+    context.driver.find_element(By.ID, "input-password").send_keys("111122223333")
 
 
 @when(u'I enter nothing into email and password field')
 def step_impl(context):
-    pass
-    # raise NotImplementedError(u'STEP: When I enter nothing into email and password field')
+    context.driver.find_element(By.ID, "input-email").send_keys("")
+    context.driver.find_element(By.ID, "input-password").send_keys("")

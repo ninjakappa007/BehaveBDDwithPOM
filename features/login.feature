@@ -1,5 +1,6 @@
 Feature: Login Functionality
 
+  @implemented
   Scenario: Login with valid credentials
     Given I navigated to Login page
     When I enter valid email and valid password into the fields

@@ -35,7 +35,7 @@ def step_impl(context):
 @then(u'Proper error message should be displayed in search results')
 def step_impl(context):
     expected_error_message = 'There is no product that matches the search criteria.'
-    assert context.driver.find_element(By.XPATH, '//input[@id = "button-search"]/following-sibling::p').text.__eq__(expected_error_message)
+    assert context.driver.find_element(By.XPATH, '//input[@id = "button-search"]/following-sibling::p').text == (expected_error_message)
 
 
 @when(u'I dont enter anything into the search box field')
