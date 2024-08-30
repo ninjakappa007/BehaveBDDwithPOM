@@ -1,7 +1,4 @@
-import time
-
 from behave import *
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 import random
 import string
@@ -9,8 +6,6 @@ import string
 
 @given(u'I navigated to Register page')
 def step_impl(context):
-    context.driver = webdriver.Chrome()
-    context.driver.get('https://tutorialsninja.com/demo/')
     context.driver.find_element(By.LINK_TEXT, 'My Account').click()
     context.driver.find_element(By.LINK_TEXT, 'Register').click()
 
@@ -68,10 +63,13 @@ def step_impl(context):
 
 @then(u'Proper message should be displayed about mandatory fields')
 def step_impl(context):
-    assert context.driver.find_element(By.XPATH, '//*[@id="account"]/div[2]/div/div').text == 'First Name must be between 1 and 32 characters!'
-    assert context.driver.find_element(By.XPATH, '//*[@id="account"]/div[3]/div/div').text == 'Last Name must be between 1 and 32 characters!'
-    assert context.driver.find_element(By.XPATH, '//*[@id="account"]/div[4]/div/div').text == 'E-Mail Address does not appear to be valid!'
-    assert context.driver.find_element(By.XPATH, '//*[@id="account"]/div[5]/div/div').text == 'Telephone must be between 3 and 32 characters!'
-    assert context.driver.find_element(By.XPATH, '//*[@id="content"]/form/fieldset[2]/div[1]/div/div').text == 'Password must be between 4 and 20 characters!'
-
-
+    assert context.driver.find_element(By.XPATH,
+                                       '//*[@id="account"]/div[2]/div/div').text == 'First Name must be between 1 and 32 characters!'
+    assert context.driver.find_element(By.XPATH,
+                                       '//*[@id="account"]/div[3]/div/div').text == 'Last Name must be between 1 and 32 characters!'
+    assert context.driver.find_element(By.XPATH,
+                                       '//*[@id="account"]/div[4]/div/div').text == 'E-Mail Address does not appear to be valid!'
+    assert context.driver.find_element(By.XPATH,
+                                       '//*[@id="account"]/div[5]/div/div').text == 'Telephone must be between 3 and 32 characters!'
+    assert context.driver.find_element(By.XPATH,
+                                       '//*[@id="content"]/form/fieldset[2]/div[1]/div/div').text == 'Password must be between 4 and 20 characters!'
