@@ -1,13 +1,18 @@
 from selenium import webdriver
+from utilities import config_reader
 
 
 def before_scenario(context, driver):
     """
     This function work as a setup function before scenario execution.
     """
-    context.driver = webdriver.Chrome()
-    context.driver.maximize_window()
-    context.driver.get('https://tutorialsninja.com/demo/')
+    browser_name = config_reader.read_config('basic info', 'browser')
+    if browser_name.lower() == 'chrome':
+        context.driver = webdriver.Chrome()
+    elif browser_name.lower() == 'firefox':
+        context.driver = webdriver.Firefox()
+
+    context.driver.get(config_reader.read_config('basic info', 'url'))
 
 
 def after_scenario(context, driver):
